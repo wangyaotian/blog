@@ -70,7 +70,6 @@ jobs:
         # 构建项目
       - name: Build blog project
         run: |
-          echo ${{ github.workspace }}
           pnpm run docs:build
 
         # 资源拷贝
