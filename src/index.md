@@ -11,18 +11,18 @@ hero:
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
-      text: flutter笔记
-      link: /api-examples
+      text: 前端
+      link: /front/vue
     - theme: alt
       text: flutter笔记test
-      link: /pages/flutter
+      link: /flutter
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 前端
+    details: 技术栈：Vue、React、UnoCss、微信小程序(原生)、Uni-app等。
+  - title: 移动端
+    details: 技术栈：Flutter ， 负责公司C端的App开发打包。
+  - title: 后端
+    details: 会一点go和node，公司项目中写过node脚本，用gin写过后台管理系统。
 ---
 
