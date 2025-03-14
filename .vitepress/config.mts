@@ -2,10 +2,9 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base:"/myblog/",
+  base:"/blog/",
   title: "笔记",
   description: "记录自己",
-  outDir: "dist",
   srcDir: "src",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
