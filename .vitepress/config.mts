@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
-
+export const baseUrl = '/blog/'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base:"/blog/",
+  base: baseUrl,
   title: "笔记",
   description: "记录自己",
   srcDir: "src",
