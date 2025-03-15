@@ -1,11 +1,13 @@
-import { useLive2d } from 'vitepress-theme-website'
-import { onMounted } from 'vue'
 export default async () => {
     // @ts-ignore-error
+
     if (!import.meta.env.SSR) {
         const { loadOml2d } = await import('oh-my-live2d');
         loadOml2d({
-            primaryColor: 'pink',
+            mobileDisplay: false,
+            // primaryColor: 'pink',
+            dockedPosition: "right",
+
             models: [
                 {
                     path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
