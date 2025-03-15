@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 export const baseUrl = '/blog/'
+import timeline from "vitepress-markdown-timeline"; 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: baseUrl,
@@ -10,9 +11,16 @@ export default defineConfig({
   ],
   srcDir: "src",
   lang: "zh-CN",
-
+  markdown:{
+    lineNumbers:true,
+    config(md) {
+        md.use(timeline)
+    },
+  },
   themeConfig: {
-
+    search: {
+      provider: 'local'
+    },
     //最后更新时间
     lastUpdated: {
       text: "最后更新",

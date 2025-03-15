@@ -1,6 +1,8 @@
 {
   "devDependencies": {
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.3",
+    "vitepress-markdown-timeline": "^1.2.2",
+    "vitepress-theme-website": "^1.0.8"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
@@ -13,6 +15,7 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
+    "oh-my-live2d": "^0.19.3",
     "vue": "^3.5.13"
   }
 }
