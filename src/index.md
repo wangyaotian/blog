@@ -3,6 +3,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo.svg
+    alt: 图片挂啦
   name: "Wongcong的文档"
   text: "随心记录"
   tagline: 人生到处知何似，应似飞鸿踏雪泥。
@@ -14,7 +17,7 @@ hero:
       text: 前端
       link: /front/vue
     - theme: alt
-      text: flutter笔记test
+      text: flutter笔记
       link: /flutter
 
 features:

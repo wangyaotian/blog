@@ -1,1 +1,0 @@
-import{_ as i,c as a,o as n,ae as h}from"./chunks/framework.tuuL-SzM.js";const g=JSON.parse('{"title":"Flutter","description":"","frontmatter":{},"headers":[],"relativePath":"flutter.md","filePath":"flutter.md"}'),l={name:"flutter.md"};function k(t,s,p,e,E,r){return n(),a("div",null,s[0]||(s[0]=[h("",11)]))}const y=i(l,[["render",k]]);export{g as __pageData,y as default};
