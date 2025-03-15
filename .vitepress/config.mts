@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 export const baseUrl = '/blog/'
-import timeline from "vitepress-markdown-timeline"; 
+import timeline from "vitepress-markdown-timeline";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: baseUrl,
@@ -11,10 +11,10 @@ export default defineConfig({
   ],
   srcDir: "src",
   lang: "zh-CN",
-  markdown:{
-    lineNumbers:true,
+  markdown: {
+    lineNumbers: true,
     config(md) {
-        md.use(timeline)
+      md.use(timeline)
     },
   },
   themeConfig: {

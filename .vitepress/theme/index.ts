@@ -12,6 +12,6 @@ export default {
   extends: DefaultTheme,
   Layout: CustomLayout, // 直接将 CustomLayout 作为 Layout
   enhanceApp({ app, router, siteData }) {
-    useLive2d()
+    // useLive2d()
   },
 } satisfies Theme

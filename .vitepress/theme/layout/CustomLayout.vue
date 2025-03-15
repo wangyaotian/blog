@@ -3,7 +3,7 @@ import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide } from 'vue'
 import useSpendTime from '../../hooks/useSpendTime'
-
+import BackToTop from '../components/BackToTop.vue'
 const { isDark } = useData()
 const { text, textStyle, colorStyle } = useSpendTime()
 const enableTransitions = () =>
@@ -44,7 +44,6 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     <DefaultTheme.Layout>
         <template #doc-before>
             <span :style="textStyle">
-
                 <span :style="colorStyle">{{ text }}</span>
             </span>
         </template>
