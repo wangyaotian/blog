@@ -3,6 +3,7 @@
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
  */
  @import './vp-code.css';
+ @import './style/blur.css';
 /**
  * Colors
  *

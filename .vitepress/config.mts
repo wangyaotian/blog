@@ -3,7 +3,7 @@ export const baseUrl = '/blog/'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: baseUrl,
-  title: "笔记",
+  title: "CongWong的笔记",
   description: "记录自己",
   head: [
     ['link', { rel: 'icon', href: baseUrl + 'favicon.ico' }]
@@ -43,15 +43,25 @@ export default defineConfig({
     logo: '/image/8858-82f0b068a02e745a3716c87d871cf979.jpg',
     nav: [
       { text: '首页', link: '/' },
-      { text: '示例', link: '/markdown-examples' },
-      { text: 'flutter', link: '/flutter' },
+      {
+        text: '前端', items: [
+          {
+            text: "Vue",
+            link: '/front/vue'
+          }, {
+            text: "React",
+            link: '/front/react'
+          },
+        ]
+      },
+      { text: 'Flutter', link: '/flutter' },
     ],
     sidebar: [
       {
         text: '前端',
         items: [
           { text: 'Vue', link: '/front/vue' },
-          { text: 'React', link: '/api-examples' }
+          { text: 'React', link: '/front/react' }
         ]
       },
     ],
