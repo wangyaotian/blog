@@ -69,5 +69,5 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/W2XiaoYu' }
     ]
-  }
+  },
 })
