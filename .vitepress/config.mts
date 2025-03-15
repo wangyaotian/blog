@@ -6,12 +6,31 @@ export default defineConfig({
   title: "笔记",
   description: "记录自己",
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: baseUrl + 'favicon.ico' }]
   ],
   srcDir: "src",
   lang: "zh-CN",
-  
+
   themeConfig: {
+
+    //最后更新时间
+    lastUpdated: {
+      text: "最后更新",
+      formatOptions: {
+        dateStyle: "short",
+        timeStyle: "short",
+      },
+    },
+    outline: {
+      level: [2, 6], // 显示 2 到 6 级标题作为大纲
+      label: '目录' // 大纲标题
+
+    },
+    // 返回顶部 Return to top
+    returnToTopLabel: "返回顶部",
+
+    // 菜单  Menu
+    sidebarMenuLabel: "菜单",
     notFound: {
       title: "界面未找到",
       quote: "您好像迷失在网络的小胡同里啦，别着急，赶紧回头是岸！",
@@ -31,8 +50,8 @@ export default defineConfig({
       {
         text: '前端',
         items: [
-          { text: 'vue', link: '/front/vue' },
-          { text: '示例', link: '/api-examples' }
+          { text: 'Vue', link: '/front/vue' },
+          { text: 'React', link: '/api-examples' }
         ]
       },
     ],
