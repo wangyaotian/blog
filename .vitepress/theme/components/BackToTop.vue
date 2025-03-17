@@ -6,15 +6,14 @@
                 d="M512 42.666667C252.8 42.666667 42.666667 252.8 42.666667 512s210.133333 469.333333 469.333333 469.333333 469.333333-210.133333 469.333333-469.333333S771.2 42.666667 512 42.666667zM128 512a384 384 0 1 1 768 0 384 384 0 0 1-768 0z m154.282667 16.384a53.333333 53.333333 0 0 1 0-75.434667l161.834666-161.834666a96 96 0 0 1 135.765334 0l161.834666 161.834666a53.333333 53.333333 0 0 1-75.434666 75.434667l-100.949334-100.949333V725.333333a53.333333 53.333333 0 1 1-106.666666 0v-297.898666l-100.949334 100.949333a53.333333 53.333333 0 0 1-75.434666 0z"
                 fill="currentColor" p-id="6741" />
         </svg>
+    
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
-const targetRef = ref<HTMLDivElement>()
 const isVisible = ref(false);
 const scrollThreshold = 300; // 滚动超过多少距离显示按钮
-
 
 
 const scrollToTop = () => {
@@ -26,6 +25,8 @@ const scrollToTop = () => {
 
 const handleScroll = () => {
     isVisible.value = window.scrollY > scrollThreshold;
+
+ 
 };
 
 onMounted(() => {
