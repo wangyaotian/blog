@@ -261,3 +261,121 @@ class Log {
 //使用
 Log.json(data.toString());
 ```
+
+## 代码片段
+
+### 网络检测组件
+
+网络检测组件，支持点击重试
+
+先安装依赖 connectivity_plus: ^6.1.3
+
+```dart
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+/// 网络监听组件
+class NetworkListener extends StatefulWidget {
+  final WidgetBuilder builder;
+
+  const NetworkListener({super.key, required this.builder});
+
+  @override
+  State<NetworkListener> createState() => _NetworkListenerState();
+}
+
+class _NetworkListenerState extends State<NetworkListener> {
+  bool isFirst = true;
+  StreamSubscription<List<ConnectivityResult>>? subscription;
+  late Future<List<ConnectivityResult>> _connectivityFuture;
+
+  final validConnectivityResults = [
+    ConnectivityResult.mobile,
+    ConnectivityResult.wifi,
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivityFuture = Connectivity().checkConnectivity();
+  }
+
+  void _retryConnection() {
+    setState(() {
+      _connectivityFuture = Connectivity().checkConnectivity();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<ConnectivityResult>>(
+      future: _connectivityFuture,
+      builder: (context, snapshot) {
+        final state = snapshot.connectionState;
+        if (state == ConnectionState.waiting) {
+          return const Center(child: CupertinoActivityIndicator());
+        }
+
+        final isConnected = snapshot.hasData &&
+            snapshot.data!.any((result) => validConnectivityResults.contains(result));
+
+        if (isConnected) {
+          return widget.builder(context);
+        }
+
+        _setupConnectivityListener();
+
+        return _buildErrorUI();
+      },
+    );
+  }
+
+  Widget _buildErrorUI() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text('网络异常，请检查网络'),
+          const SizedBox(height: 16),
+          OutlinedButton(
+            onPressed: _retryConnection,
+            child: const Text('点击重试'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _setupConnectivityListener() {
+    subscription ??= Connectivity().onConnectivityChanged.listen((results) {
+      if (!isFirst) {
+        final isConnected = results.any((result) => validConnectivityResults.contains(result));
+        if (isConnected && mounted) {
+          setState(() {});
+          subscription?.cancel();
+          subscription = null;
+        }
+      } else {
+        isFirst = false;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    super.dispose();
+  }
+}
+
+
+///使用案例
+NetworkListener(
+  builder: (ctx) {
+    return DouyinHome();
+  },
+)
+```

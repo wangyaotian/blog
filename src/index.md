@@ -21,10 +21,10 @@ hero:
       link: /flutter
 
 features:
-  - title: 前端
+  - title: Web
     details: 技术栈：Vue、React、UnoCss、微信小程序(原生)、Uni-app等。
   - title: 移动端
-    details: 技术栈：Flutter ， 负责公司C端的App开发打包。
+    details: 技术栈：Flutter开发iOS和Android App。
   - title: 后端
     details: 会一点go和node，公司项目中写过node脚本，用gin写过后台管理系统。
 ---
