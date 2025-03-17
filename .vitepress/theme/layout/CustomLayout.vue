@@ -47,6 +47,10 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
                 <span :style="colorStyle">{{ text }}</span>
             </span>
         </template>
+        <template #doc-after>
+            <BackToTop />
+        </template>
+
     </DefaultTheme.Layout>
 </template>
 

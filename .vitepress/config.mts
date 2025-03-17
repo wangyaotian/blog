@@ -19,7 +19,11 @@ export default defineConfig({
   },
   themeConfig: {
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        locales: {
+        }
+      }
     },
     //最后更新时间
     lastUpdated: {

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@vueuse/core':
+        specifier: ^13.0.0
+        version: 13.0.0(vue@3.5.13)
       oh-my-live2d:
         specifier: ^0.19.3
         version: 0.19.3

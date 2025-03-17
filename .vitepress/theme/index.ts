@@ -1,6 +1,6 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import useLive2d from './layout/Live2d'
+// import { h } from 'vue'
+// import useLive2d from './layout/Live2d'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
@@ -15,3 +15,4 @@ export default {
     // useLive2d()
   },
 } satisfies Theme
+  
