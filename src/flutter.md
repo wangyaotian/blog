@@ -379,3 +379,463 @@ NetworkListener(
   },
 )
 ```
+
+### 抖音首页布局
+
+1. 基本布局
+
+```dart
+
+class DouyinHome extends StatefulWidget {
+  const DouyinHome({
+    super.key,
+  });
+
+  @override
+  State<DouyinHome> createState() => _DouyinHomeState();
+}
+
+class _DouyinHomeState extends State<DouyinHome> {
+  final PageController _pageController = PageController();
+  //模拟视频列表
+  List<String> videoUrls = [
+    'https://sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-360p.mp4',
+    'https://sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-360p.mp4',
+    'https://sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-360p.mp4',
+  ];
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(//定义顶部tab的控制器
+      length: 3,
+      initialIndex: 0,
+      child: _buildBody(),
+    );
+  }
+
+  Widget _buildVideo() {
+    return PageView.builder(
+      controller: _pageController,
+      scrollDirection: Axis.vertical,
+      onPageChanged: (index) {
+        setState(
+          () {
+            _currentPage = index;
+          },
+        );
+      },
+      itemBuilder: (context, index) {
+        return VideoPlayerItem(
+          videoUrl: videoUrls[index],
+          isCurrent: index == _currentPage,
+        );
+      },
+    );
+  }
+
+  Widget _buildBody() {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          TabBarView(//tabbar的三个界面
+            children: [
+              Stack(children: [
+                _buildVideo(),//视频播放界面
+              ]),
+              Center(
+                child: Text(
+                  'page 2',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Center(
+                child: Text(
+                  'page 3',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+          Positioned(//顶部的tab 支持沉浸状态栏
+            width: MediaQuery.of(context).size.width,
+            top: MediaQuery.of(context).padding.top,
+            child: SizedBox(
+              height: 56.w,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(
+                    Icons.live_tv,
+                    color: Colors.white,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 40,
+                        right: 40,
+                        top: 15,
+                        bottom: 15,
+                      ),
+                      child: Center(
+                        child: TabBar(
+                          splashFactory: NoSplash.splashFactory,
+                          //去掉水波纹
+                          dividerHeight: 0,
+                          indicatorColor: Colors.white,
+                          //选中下划线的颜色
+                          indicatorSize: TabBarIndicatorSize.label,
+                          //选中下划线的长度
+                          tabs: [
+                            Tab(
+                              child: Text(
+                                '同城',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            Tab(
+                              child: Text(
+                                '关注',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            Tab(
+                              child: Text(
+                                '推荐',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 12.w,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+2. 上下滑动播放视频
+
+```dart
+class VideoPlayerItem extends StatefulWidget {
+  final String videoUrl;
+  final bool isCurrent;
+
+  const VideoPlayerItem({
+    super.key,
+    required this.videoUrl,
+    required this.isCurrent,
+  });
+
+  @override
+  _VideoPlayerItemState createState() => _VideoPlayerItemState();
+}
+
+class _VideoPlayerItemState extends State<VideoPlayerItem> {
+  late VideoPlayerController _videoController;
+  late ChewieController _chewieController;//视频播放控制插件
+  bool _showControls = false;
+  bool _isLiked = false;//是否点赞
+  int _likeCount = 2345;//点赞数
+  bool _isPaused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializePlayer();//初始化
+  }
+
+  Future<void> _initializePlayer() async {
+    _videoController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+
+    await _videoController.initialize();
+
+    _chewieController = ChewieController(
+      videoPlayerController: _videoController,
+      autoPlay: true,
+      looping: true,
+      showControls: false,
+    );
+    setState(() {});
+    if (widget.isCurrent) {//加载完自动播放
+      _videoController.play();
+    }
+  }
+
+  @override
+  void didUpdateWidget(VideoPlayerItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isCurrent && !widget.isCurrent) {
+      _videoController.pause();
+      setState(() {
+        _isPaused = true;
+      });
+    } else if (!oldWidget.isCurrent && widget.isCurrent) {
+      _videoController.play();
+    }
+  }
+
+  @override
+  void dispose() {
+    _videoController.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() => _showControls = !_showControls);
+      },
+      child: Stack(
+        children: [
+          // 视频播放区域
+          _videoController.value.isInitialized
+              ? Chewie(controller: _chewieController)
+              : Center(
+                  child: CupertinoActivityIndicator(
+                    animating: true,
+                    color: Colors.white,
+                    radius: 12,
+                  ),
+                ),
+
+          //操作遮罩层
+          _buildOverlayUI(),
+          if (_isPaused)//暂定状态 中间的图标
+            GestureDetector(
+              onTap: () {
+                _videoController.play();
+                setState(() {
+                  _isPaused = false;
+                });
+              },
+              child: Center(
+                child: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                  size: 240,
+                ),
+              ),
+            )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOverlayUI() {//遮罩层 用来放右侧操作栏 和底部的标题以及进度条等信息
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent, //让子元素空区域也可以点击
+      onTap: () {
+        // 确保控制器已初始化
+        if (!_videoController.value.isInitialized) return;
+        if (_videoController.value.isPlaying) {
+          _videoController.pause();
+        } else {
+          _videoController.play();
+        }
+        setState(() {
+          _isPaused = !_videoController.value.isPlaying;
+        });
+      },
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // 底部控制区域
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  // 左侧用户信息
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('@抖音用户',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10),
+                        Text(
+                          '这是一个有趣的短视频，快来点赞吧！',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.red,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.music_note,
+                              size: 16,
+                              color: Colors.red,
+                            ),
+                            Text(
+                              '原声 - 原创音乐',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 15.w,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: //视频播放的进度条
+                                    VideoProgressBar(
+                                  _videoController,
+                                  barHeight: 2,
+                                  handleHeight: 2,
+                                  drawShadow: true,
+                                  colors: ChewieProgressColors(
+                                    playedColor: Colors.white,
+                                    handleColor: Colors.white,
+                                    bufferedColor:
+                                        Colors.white.withValues(alpha: 0.4),
+                                    backgroundColor:
+                                        Colors.white.withValues(alpha: 0.4),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    _formatDuration(
+                                        _videoController.value.position),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 2),
+                                    child: Text(
+                                      '/',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                    ),
+                                  ),
+                                  Text(
+                                    _formatDuration(
+                                        _videoController.value.duration),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  // 右侧互动按钮
+                  _buildRightActionBar(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRightActionBar() {//右侧
+    return Column(
+      children: [
+        _buildActionButton(
+          _isLiked ? Icons.favorite : Icons.favorite_border,
+          '$_likeCount',
+          () {
+            setState(() {
+              _isLiked = !_isLiked;
+              _likeCount += _isLiked ? 1 : -1;
+            });
+          },
+          color: _isLiked ? Colors.red : Colors.white,
+        ),
+        _buildActionButton(Icons.comment, '2345', () {}),
+        _buildActionButton(Icons.share, '分享', () {}),
+        SizedBox(height: 20),
+        CircleAvatar(
+          radius: 20,
+          backgroundImage:
+              NetworkImage('https://randomuser.me/api/portraits/men/1.jpg'),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButton(IconData icon, String text, VoidCallback onTap,
+      {Color color = Colors.white}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: Column(
+        children: [
+          IconButton(
+            icon: Icon(icon, color: color, size: 32),
+            onPressed: onTap,
+          ),
+          Text(text,
+              style: TextStyle(
+                  color: color, fontSize: 12, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+
+  String _formatDuration(Duration duration) {//时间数
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return duration.inHours > 0
+        ? "$hours:$minutes:$seconds"
+        : "$minutes:$seconds";
+  }
+}
+```
