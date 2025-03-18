@@ -4,82 +4,97 @@ import timeline from "vitepress-markdown-timeline";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: baseUrl,
-  title: "CongWong的笔记",
+  title: "奔跑的蜗牛",
   description: "记录自己",
   head: [
-    ['link', { rel: 'icon', href: baseUrl + 'favicon.ico' }]
+      ['link', {rel: 'icon', href: baseUrl + 'Run-snail.ico'}]
   ],
   srcDir: "src",
   lang: "zh-CN",
   markdown: {
-    lineNumbers: true,
-    config(md) {
-      md.use(timeline)
-    },
+      lineNumbers: true,
+      config(md) {
+          md.use(timeline)
+      },
   },
   themeConfig: {
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-        }
-      }
-    },
-    //最后更新时间
-    lastUpdated: {
-      text: "最后更新",
-      formatOptions: {
-        dateStyle: "short",
-        timeStyle: "short",
+      search: {
+          provider: 'local',
+          options: {
+              locales: {}
+          }
       },
-    },
-    outline: {
-      level: [2, 6], // 显示 2 到 6 级标题作为大纲
-      label: '目录' // 大纲标题
-
-    },
-    // 返回顶部 Return to top
-    returnToTopLabel: "返回顶部",
-
-    // 菜单  Menu
-    sidebarMenuLabel: "菜单",
-    notFound: {
-      title: "界面未找到",
-      quote: "您好像迷失在网络的小胡同里啦，别着急，赶紧回头是岸！",
-      linkText: "返回首页"
-    },
-    docFooter: {
-      prev: "上一页",
-      next: "下一页"
-    },
-    logo: '/image/8858-82f0b068a02e745a3716c87d871cf979.jpg',
-    nav: [
-      { text: '首页', link: '/' },
-      {
-        text: '前端', items: [
-          {
-            text: "Vue",
-            link: '/front/vue'
-          }, {
-            text: "React",
-            link: '/front/react'
+      //最后更新时间
+      lastUpdated: {
+          text: "最后更新",
+          formatOptions: {
+              dateStyle: "short",
+              timeStyle: "short",
           },
-        ]
       },
-      { text: 'Flutter', link: '/flutter' },
-    ],
-    sidebar: [
-      {
-        text: '前端',
-        items: [
-          { text: 'Vue', link: '/front/vue' },
-          { text: 'React', link: '/front/react' }
-        ]
-      },
-    ],
+      outline: {
+          level: [2, 6], // 显示 2 到 6 级标题作为大纲
+          label: '目录' // 大纲标题
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/W2XiaoYu' }
-    ]
+      },
+      // 返回顶部 Return to top
+      returnToTopLabel: "返回顶部",
+
+      // 菜单  Menu
+      sidebarMenuLabel: "菜单",
+      notFound: {
+          title: "界面未找到",
+          quote: "您好像迷失在网络的小胡同里啦，别着急，赶紧回头是岸！",
+          linkText: "返回首页"
+      },
+      docFooter: {
+          prev: "上一页",
+          next: "下一页"
+      },
+      logo: '/image/20240319141015.jpg',
+      nav: [
+          {text: '首页', link: '/'},
+          {
+              text: '数据库', items: [
+                  {
+                      text: "MySQL",
+                      link: '/front/database/mysql'
+                  },
+                  {
+                      text: "Redis",
+                      link: '/front/database/redis'
+                  },
+                  {
+                      text: "Elasticsearch",
+                      link: '/front/database/elasticsearch'
+                  },
+                  {
+                      text: "RabbitMQ",
+                      link: '/front/database/rabbitmq'
+                  },
+              ]
+          },
+          {text: 'Golang', link: '/golang'},
+      ],
+      sidebar: [
+          {
+              text: '数据库',
+              items: [
+                  {text: 'MySQL',
+                      collapsible: true, // 允许折叠
+                      collapsed: false,   // 默认展开
+                   items: [
+                          {text: '安装MySQL', link: '/front/database/mysql/mysql1.md'},
+                          {text: 'MySQL事务', link: '/front/database/elasticsearch'},
+                          {text: 'MySQL事件', link: '/front/database/rabbitmq'}
+                      ]},
+                  {text: 'Redis', link: '/front/database/redis'}
+              ]
+          },
+      ],
+
+      socialLinks: [
+          {icon: 'github', link: 'https://github.com/W2XiaoYu'}
+      ]
   },
 })
