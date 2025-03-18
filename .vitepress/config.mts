@@ -38,6 +38,11 @@ export default defineConfig({
           label: '目录' // 大纲标题
 
       },
+
+      // 移动端切换主题展示文本
+      darkModeSwitchLabel: "切换主题",
+      // 移动端切换语言展示文本
+      langMenuLabel: "切换语言",
       // 返回顶部 Return to top
       returnToTopLabel: "返回顶部",
 
