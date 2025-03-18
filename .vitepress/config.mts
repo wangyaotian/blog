@@ -85,8 +85,12 @@ export default defineConfig({
                       collapsed: false,   // 默认展开
                    items: [
                           {text: '安装MySQL', link: '/front/database/mysql/mysql1.md'},
-                          {text: 'MySQL事务', link: '/front/database/elasticsearch'},
-                          {text: 'MySQL事件', link: '/front/database/rabbitmq'}
+                          {text: 'MySQL事务', link: '/front/database/mysql/mysql-transaction.md'},
+                          {text: 'MySQL锁', link: '/front/database/mysql/mysql-lock.md'},
+                          {text: 'MySQL索引', link: '/front/database/mysql/mysql-index.md'},
+                          {text: 'MySQL慢查询', link: '/front/database/mysql/mysql-slow-query.md'},
+                          {text: 'MySQL优化', link: '/front/database/mysql/mysql-optimize.md'},
+                          {text: 'binlog redolog undolog', link: '/front/database/mysql/mysql-log.md'},
                       ]},
                   {text: 'Redis', link: '/front/database/redis'}
               ]
