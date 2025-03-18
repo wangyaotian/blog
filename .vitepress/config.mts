@@ -85,13 +85,13 @@ export default defineConfig({
                       collapsible: true, // 允许折叠
                       collapsed: false,   // 默认展开
                    items: [
-                          {text: '安装MySQL', link: '/front/database/mysql/mysql1'},
-                          {text: 'MySQL事务', link: '/front/database/mysql/mysql-transaction'},
-                          {text: 'MySQL锁', link: '/front/database/mysql/mysql-lock'},
-                          {text: 'MySQL索引', link: '/front/database/mysql/mysql-index'},
-                          {text: 'MySQL慢查询', link: '/front/database/mysql/mysql-slow-query'},
-                          {text: 'MySQL优化', link: '/front/database/mysql/mysql-optimize'},
-                          {text: 'binlog redolog undolog', link: '/front/database/mysql/mysql-log'},
+                          {text: '安装MySQL', link: '/front/database/MySQL/mysql1'},
+                          {text: 'MySQL事务', link: '/front/database/MySQL/mysql-transaction'},
+                          {text: 'MySQL锁', link: '/front/database/MySQL/mysql-lock'},
+                          {text: 'MySQL索引', link: '/front/database/MySQL/mysql-index'},
+                          {text: 'MySQL慢查询', link: '/front/database/MySQL/mysql-slow-query'},
+                          {text: 'MySQL优化', link: '/front/database/MySQL/mysql-optimize'},
+                          {text: 'binlog redolog undolog', link: '/front/database/MySQL/mysql-log'},
                       ]},
                   {text: 'Redis', link: '/front/database/redis'}
               ]
