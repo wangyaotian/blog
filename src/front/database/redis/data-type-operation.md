@@ -87,12 +87,13 @@ print(r.get('name'))        #运行结果： b'aaaabbbb'
 
 - 假设我们要记录网站的访问次数，可以设置一个key叫做‘website:views’
 
-``` redis
+``` shell
 # 创建计数器
 SET website:views 0
 # 计数器+1
 INCR website:views
 (integer) 1
+
 ```
 
 ###### 2、分布式锁

@@ -82,13 +82,14 @@
 
 - 结构图长下面这个样子（）
 
-``` redis
+``` shell
 struct __attribute__ ((__packed__)) hisdshdr8 {
  uint8_t len; /* used */
  uint8_t alloc; /* excluding the header and null terminator */
  unsigned char flags; /* 3 lsb of type, 5 unused bits */
  char buf[];
 };
+
 ```
 
 #### 三、list(列表)
