@@ -15,7 +15,7 @@
 
 MySQL支持使用`START TRANSACTION`、`COMMIT`、`ROLLBACK`等语句来控制事务的开始、提交和回滚。以下是事务的基本使用方法：
 
-```mysql
+``` shell
 -- 开始事务
 START TRANSACTION;
 

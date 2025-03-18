@@ -51,7 +51,7 @@
 
 - 如果列很长，通常可以在索引开始的部分字符，这样可以有效节约索引空间，从而提高索引效率
 
-``` mysql
+``` shell
 CREATE INDEX idx_name ON user(name(20));
 -- name VARCHAR(255)类型的列，如果对整个列进行索引，索引的空间会很大
 -- 这样就可以创建一个支队 name列的前20个字符进行索引的索引，从而提高索引效率，同时节约索引空间
@@ -64,13 +64,13 @@ CREATE INDEX idx_name ON user(name(20));
 - 所以在老版本，比如MySQL5.0之前就会随便选择一个列的索引，而新的版本会采用合并索引的策略
 - 举个简单的例子，在一张电影演员表中，在actor_id和film_id两个列上都建立了独立的索引
 
-``` mysql
+``` shell
 select film_id,actor_id from film_actor where actor_id =1 or film_id =1
 ```
 
 - 老版本的MySQL会随机选择一个索引，但新版本做如下的优化
 
-``` mysql
+``` shell
 select film_id,actor_id from film_actor where actor_id =1
 union all
 select film_id,actor_id from film_actor where film_id = 1 and actor_id <>1
@@ -83,7 +83,7 @@ select film_id,actor_id from film_actor where film_id = 1 and actor_id <>1
 - 因此explain时如果发现有索引合并（Extra字段出现USing union），应该好好检查一下查询
 - 如果查询和表都没有问题，那只能说明索引建的非常糟糕
 
-``` mysql
+``` shell
 -- 联合索引最优
 SELECT * FROM payment where staff_id =2 and customer_id =584
 
@@ -113,7 +113,7 @@ CREATE INDEX idx_trade_user_group_ampunt ON trade(user_group_id,trade_amount,use
 - ORDER BY子句和查询的限制是一样的，都要满足最左前缀的要求
     - 有一种情况例外，就是最左的列被指定为常数，下面是一个简单的示例
 
-``` mysql
+``` shell
 -- 最左列为常数，索引：(date,staff_id,customer_id)
 select  staff_id,customer_id from demo where date = '2024-07-01' order by staff_id,customer_id
 -- 这里最左列索引 date = '2024-07-01' 就是固定值
@@ -148,7 +148,7 @@ select  staff_id,customer_id from demo where date = '2024-07-01' order by staff_
     - MySQL会先从A表中取出一行，然后再B表中进行全表扫描，寻找zz列值与A表中当前行的zz列值相等的索引行
     - 这样，对于A表中的每一行，MySQl都需要再B表中进行一次全表扫描，这将导致查询效率非常低
 
-``` mysql
+``` shell
 SELECT A.xx,B.yy
 FROM A INNER　JOIN　B ON A.zz = B.zz
 WHERE A.XX IN(5,6)
@@ -156,7 +156,7 @@ WHERE A.XX IN(5,6)
 
 - 如果创建如下索引
 
-``` mysql
+``` shell
 CREATE INDEX idx_a_xx_zz ON A(xx,zz);
 CREATE INDEX idx_b_zz ON B(zz)
 ```
@@ -202,7 +202,7 @@ CREATE INDEX idx_b_zz ON B(zz)
     - 不论是内存临时表还是磁盘临时表都不会存在索引，所以查询性能会受到一定的影响
     - 由于子查询会产生大量的临时表也没有索引，所以会消耗过多的CPU和IO资源，产生大量的慢查询
 
-``` mysql
+``` shell
 -- 子查询
 SELECT c.customer_name, 
 (SELECT COUNT(*) FROM orders o WHERE o.customer_id = c.customer_id) AS order_count 
@@ -233,7 +233,7 @@ GROUP BY c.customer_id;
 
 - 对列进行函数转换或计算时会导致无法使用索引
 
-``` mysql
+``` shell
 -- 不推荐
 where date(create_time)='20240715'
 

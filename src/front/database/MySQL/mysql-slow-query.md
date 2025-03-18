@@ -12,7 +12,7 @@
 
 ##### 2、开启慢查询
 
-``` mysql
+``` shell
 -- 查看慢查询配置
 show variables like "%slow_query_log%";
 -- 开启慢查询日志
@@ -27,7 +27,7 @@ show global variables like '%long_query_time%';l
 
 - 查询sql慢查询
 
-``` mysql
+``` shell
 -- 查看已经被记录的慢查询数量
 mysql> SHOW GLOBAL STATUS LIKE '%Slow_queries%';
 -- 模拟慢查询
@@ -58,7 +58,7 @@ select sleep(4);
 
 ##### 3、查找那些语句慢
 
-``` mysql
+``` shell
 -- 比如，得到返回记录集最多的10个SQL
 mysqldumpslow -s r -t 10 /database/mysql/mysql06_slow.log
 
@@ -82,7 +82,7 @@ mysqldumpslow -s r -t 20 /mysqldata/mysql/mysql06-slow.log | more
 
 ###### 1、创建表
 
-``` mysql
+``` shell
 CREATE TABLE `film` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) DEFAULT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE `film_actor` (
 
 - 插入测试数据
 
-``` mysql
+``` shell
 INSERT INTO film (name) VALUES ('MovieName');
 INSERT INTO actor (id, name, update_time) VALUES (1, 'ActorName', '2024-03-08 12:00:00');
 INSERT INTO film_actor (id, film_id, actor_id, remark) VALUES (1, 1, 1, 'SomeRemark');
@@ -170,7 +170,7 @@ possible_keys: NULL -- 显示了MySQL可以使用哪些索引来执行查询，�
 
 ###### 3、show warnigs
 
-``` mysql
+``` shell
 mysql> show warnings \G;
 -- 1.row 截断错误的DOUBLE值:'abc'
 *************************** 1.row ***************************
@@ -209,7 +209,7 @@ select_type:SIMPLE --显示了查询的类型
 
 ###### 1、SIMPLE
 
-``` mysql
+``` shell
 mysql> explain select * from film where id = 2 \G;
            id: 1
   select_type: SIMPLE -- 简单查询，不包含子查询或UNION操作
@@ -227,7 +227,7 @@ possible_keys: PRIMARY
 
 ###### 2、PRIMARY和SUBQUERY
 
-``` mysql
+``` shell
 mysql> explain select (select 1 from actor where id = 1) from (select * from film where id = 1) der \G;
 *************************** 1. row ***************************
            id: 1
@@ -261,7 +261,7 @@ possible_keys: PRIMARY
 
 - 这个查询语句是一个UNION ALL操作，用于将两个SELECT语句的结果合并在一起
 
-``` mysql
+``` shell
 mysql> explain select 1 union all select 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -277,7 +277,7 @@ mysql> explain select 1 union all select 1 \G;
 - 依次从最优到最差分别为：
     - system>const>eq_ref>ref>range>index>ALL一般来说，需要保证查询达到range级别，最好达到ref
 
-``` mysql
+``` shell
 type:NULL -- 显示了查询使用的访问方式
 -- NULL：mysql无法确定使用那种访问方式，通常因为没有使用索引或者使用了不适合的索引
 -- const: 当Mysql能够通过索引或常量关系只匹配一行数据时使用的访问方式
@@ -293,7 +293,7 @@ type:NULL -- 显示了查询使用的访问方式
 - mysql能够在优化阶段分解查询语句，在执行阶段用不着再访问表或索引
 - 例如：在索引列中选取最小值，可以单独查找索引来完成，不需要在执行访问表
 
-``` mysql
+``` shell
 mysql>  explain select min(id) from film \G;
 *************************** 1. row ***************************
            id: 1
@@ -316,7 +316,7 @@ select id from table1 where status =1;
 - system：表只有一行，这是最好的可能情况，查询性能最高
 - const：表中有一个或多个具有相同值的索引
 
-``` mysql
+``` shell
 mysql> explain select * from film where id = 2 \G;
            id: 1
   select_type: SIMPLE -- 简单查询，不包含子查询或UNION操作
@@ -339,7 +339,7 @@ possible_keys: PRIMARY
 - 在连接操作中，MySQL在查询时对于每个连接的行组合，都可以从表中使用唯一索引或主键查找到一行
 - 这可能是在const之外最好的连接类型了，简单的select查询不会出现这种type
 
-``` mysql
+``` shell
 ysql> explain select * from film_actor left join film on film_actor.film_id = film.id \G;
 *************************** 1. row ***************************
            id: 1
@@ -372,7 +372,7 @@ possible_keys: PRIMARY
 
 - 这种查询类型可以返回多行，它使用普通索引或者唯一索引的一部分来查找行
 
-``` mysql
+``` shell
 mysql> explain select * from film where name = "film1" \G;
 *************************** 1. row ***************************
            id: 1
@@ -430,7 +430,7 @@ possible_keys: idx_film_actor_id
 
 - 范围扫描通常出现在in(),between,>,<,>=等操作中(使用一个索引来检索给定范围的行)
 
-``` mysql
+``` shell
 mysql> explain select * from actor where id > 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -453,7 +453,7 @@ possible_keys: PRIMARY
 - 这里的film表中只有两个字段，id:主键索引，name：普通索引
 - 所以这里直接从索引中就可以获取，无需访问主键中的数据行
 
-``` mysql
+``` shell
 mysql> explain select * from film \G;
 *************************** 1. row ***************************
            id: 1
@@ -477,7 +477,7 @@ possible_keys: NULL
 - 对于MyISAM存储引擎，由于它使用的是非聚集索引，所以type:ALL确实意味着全表扫描
 - InnoDB存储引擎，使用聚集索引，所以type:ALL实际上是通过扫描主键索引来完成的
 
-``` mysql
+``` shell
 mysql> explain select * from actor \G;
 *************************** 1. row ***************************
            id: 1
@@ -515,7 +515,7 @@ possible_keys: NULL
 - 一般是使用了覆盖索引（索引包含了所有查询的字段）
 - 对于innodb来说，如果是辅助索引性能会有不少提高
 
-``` mysql
+``` shell
 mysql> explain select film_id from film_actor where film_id = 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -536,7 +536,7 @@ possible_keys: idx_film_actor_id
 
 - 查询的列未被索引覆盖，where筛选条件非索引的前导列
 
-``` mysql
+``` shell
 mysql> explain select * from actor where name = 'a' \G;
 *************************** 1. row ***************************
            id: 1
@@ -557,7 +557,7 @@ possible_keys: NULL
 
 - 查询被索引覆盖，where不是索引迁到列，无法使用索引
 
-``` mysql
+``` shell
 mysql> explain select film_id from film_actor where actor_id = 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -579,7 +579,7 @@ possible_keys: idx_film_actor_id
 - 查询的列未被索引覆盖，并且where筛选条件是索引的前导列
 - 意味着用到了索引，但是部分字段未被索引覆盖，必须通过回表来实现
 
-``` mysql
+``` shell
 mysql> explain select * from film_actor where film_id = 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -600,7 +600,7 @@ possible_keys: idx_film_actor_id
 
 - 与Using where类似，查询的列不完全被索引覆盖，where条件中是一个前导列的范围
 
-``` mysql
+``` shell
 mysql> explain select * from film_actor where film_id > 1 \G;
 *************************** 1. row ***************************
            id: 1
@@ -624,7 +624,7 @@ possible_keys: idx_film_actor_id
 
 - actor.name没有索引，此时创建了张临时表来distinct
 
-``` mysql
+``` shell
 mysql> explain select distinct name from actor \G;
 *************************** 1. row ***************************
            id: 1
@@ -643,7 +643,7 @@ possible_keys: NULL
 
 - film.name建立了idx_name索引，此时查询时extra是using index,没有用临时表
 
-``` mysql
+``` shell
 mysql> explain select distinct name from film \G;
 *************************** 1. row ***************************
            id: 1
@@ -667,7 +667,7 @@ possible_keys: idx_name
 - 这种i情况下一般也是要考虑使用索引来优化的
 - actor.name未创建索引，会浏览actor整个表，保存排序关键字name和对应的id，然后排序name并检索行记录
 
-``` mysql
+``` shell
 mysql>  explain select * from actor order by name \G;
 *************************** 1. row ***************************
            id: 1
@@ -685,7 +685,7 @@ possible_keys: NULL
 
 - film.name建立了idx_name索引,此时查询时extra是using index
 
-``` mysql
+``` shell
 mysql> explain select * from film order by name \G;
 *************************** 1. row ***************************
            id: 1
