@@ -11,7 +11,8 @@ export default defineConfig({
   ],
   srcDir: "src",
   lang: "zh-CN",
-  markdown: {
+    ignoreDeadLinks: true,
+    markdown: {
       lineNumbers: true,
       config(md) {
           md.use(timeline)
