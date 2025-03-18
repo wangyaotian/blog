@@ -38,7 +38,6 @@ export default defineConfig({
           label: '目录' // 大纲标题
 
       },
-
       // 移动端切换主题展示文本
       darkModeSwitchLabel: "切换主题",
       // 移动端切换语言展示文本
@@ -97,6 +96,10 @@ export default defineConfig({
                           {text: 'MySQL慢查询', link: '/front/database/MySQL/mysql-slow-query'},
                           {text: 'MySQL优化', link: '/front/database/MySQL/mysql-optimize'},
                           {text: 'binlog redolog undolog', link: '/front/database/MySQL/mysql-log'},
+                          {text: 'MVCC原理', link: '/front/database/MySQL/mysql-mvcc'},
+                          {text: 'SQL执行过程', link: '/front/database/MySQL/mysql-execution-process'},
+                          {text: 'MySQL主从同步', link: '/front/database/MySQL/master-slave-synchronization'},
+                          {text: 'MySQL主从配置', link: '/front/database/MySQL/master-slave-config'},
                       ]},
                   {text: 'Redis', link: '/front/database/redis'}
               ]

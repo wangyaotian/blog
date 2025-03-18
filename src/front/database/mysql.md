@@ -10,6 +10,10 @@
 - [MySQL慢查询](/front/database/MySQL/mysql-slow-query)
 - [MySQL优化](/front/database/MySQL/mysql-optimize)
 - [binlog redolog undolog](/front/database/MySQL/mysql-log)
+- [MVCC原理](/front/database/MySQL/mysql-mvcc)
+- [SQL执行过程](/front/database/MySQL/mysql-execution-process)
+- [MySQL主从同步](/front/database/MySQL/master-slave-synchronization)
+- [MySQL主从配置](/front/database/MySQL/master-slave-config)
 
 ---
 
