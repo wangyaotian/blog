@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 export const baseUrl = '/blog/'
 import timeline from "vitepress-markdown-timeline";
 // https://vitepress.dev/reference/site-config
+// @ts-ignore
 export default defineConfig({
   base: baseUrl,
   title: "奔跑的蜗牛",
@@ -27,10 +28,13 @@ export default defineConfig({
       },
       //最后更新时间
       lastUpdated: {
-          text: "最后更新",
+          text: "最近更新",
           formatOptions: {
-              dateStyle: "short",
-              timeStyle: "short",
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
           },
       },
       outline: {
@@ -88,7 +92,6 @@ export default defineConfig({
                   items: [
                       {
                           text: 'MySQL',
-                          collapsible: true, // 允许折叠
                           collapsed: false,   // 默认展开
                           items: [
                               {text: '安装MySQL', link: '/front/database/MySQL/mysql1'},
@@ -108,11 +111,12 @@ export default defineConfig({
                       },
                       {
                           text: 'Redis',
-                          collapsible: true, // 允许折叠
                           collapsed: false,   // 默认展开
                           items: [
                               {text: 'Redis安装', link: '/front/database/redis/redis-install'},
                               {text: 'Redis基础', link: '/front/database/redis/redis-basics'},
+                              {text: 'Redis底层存储', link: '/front/database/redis/underlying-storage'},
+                              {text: 'Redis数据类型操作', link: '/front/database/redis/data-type-operation'},
                           ]
                       }
                   ]
