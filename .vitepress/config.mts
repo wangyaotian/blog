@@ -79,32 +79,57 @@ export default defineConfig({
                   },
               ]
           },
-          {text: 'Golang', link: '/golang'},
+          {text: 'Golang', link: '/front/vue'},
       ],
-      sidebar: [
-          {
-              text: '数据库',
-              items: [
-                  {text: 'MySQL',
-                      collapsible: true, // 允许折叠
-                      collapsed: false,   // 默认展开
-                   items: [
-                          {text: '安装MySQL', link: '/front/database/MySQL/mysql1'},
-                          {text: 'MySQL事务', link: '/front/database/MySQL/mysql-transaction'},
-                          {text: 'MySQL锁', link: '/front/database/MySQL/mysql-lock'},
-                          {text: 'MySQL索引', link: '/front/database/MySQL/mysql-index'},
-                          {text: 'MySQL慢查询', link: '/front/database/MySQL/mysql-slow-query'},
-                          {text: 'MySQL优化', link: '/front/database/MySQL/mysql-optimize'},
-                          {text: 'binlog redolog undolog', link: '/front/database/MySQL/mysql-log'},
-                          {text: 'MVCC原理', link: '/front/database/MySQL/mysql-mvcc'},
-                          {text: 'SQL执行过程', link: '/front/database/MySQL/mysql-execution-process'},
-                          {text: 'MySQL主从同步', link: '/front/database/MySQL/master-slave-synchronization'},
-                          {text: 'MySQL主从配置', link: '/front/database/MySQL/master-slave-config'},
-                      ]},
-                  {text: 'Redis', link: '/front/database/redis'}
-              ]
-          },
-      ],
+      sidebar: {
+          '/front/database/': [
+              {
+                  text: '数据库',
+                  items: [
+                      {
+                          text: 'MySQL',
+                          collapsible: true, // 允许折叠
+                          collapsed: false,   // 默认展开
+                          items: [
+                              {text: '安装MySQL', link: '/front/database/MySQL/mysql1'},
+                              {text: 'MySQL事务', link: '/front/database/MySQL/mysql-transaction'},
+                              {text: 'MySQL锁', link: '/front/database/MySQL/mysql-lock'},
+                              {text: 'MySQL索引', link: '/front/database/MySQL/mysql-index'},
+                              {text: 'MySQL慢查询', link: '/front/database/MySQL/mysql-slow-query'},
+                              {text: 'MySQL优化', link: '/front/database/MySQL/mysql-optimize'},
+                              {text: 'binlog redolog undolog', link: '/front/database/MySQL/mysql-log'},
+                              {text: 'MVCC原理', link: '/front/database/MySQL/mysql-mvcc'},
+                              {text: 'SQL执行过程', link: '/front/database/MySQL/mysql-execution-process'},
+                              {text: 'MySQL主从同步', link: '/front/database/MySQL/master-slave-synchronization'},
+                              {text: 'MySQL主从配置', link: '/front/database/MySQL/master-slave-config'},
+                              {text: 'MySQL和Redis一致性', link: '/front/database/MySQL/mysql-consistency'},
+                              {text: 'MySQL查询缓存', link: '/front/database/MySQL/mysql-query-cache'},
+                          ]
+                      },
+                      {
+                          text: 'Redis',
+                          collapsible: true, // 允许折叠
+                          collapsed: false,   // 默认展开
+                          items: [
+                              {text: 'Redis安装', link: '/front/database/redis/redis-install'},
+                          ]
+                      }
+                  ]
+              },
+          ],
+          '/front/golang/': [
+              {
+                  text: 'Golang',
+                  items: [
+                      {text: 'Golang基础', link: '/front/golang/basic'},
+                      {text: 'Golang并发', link: '/front/golang/concurrency'},
+                      {text: 'Golang网络编程', link: '/front/golang/network'},
+                      {text: 'Golang性能优化', link: '/front/golang/performance'},
+                  ]
+              }
+          ]
+      },
+
 
       socialLinks: [
           {icon: 'github', link: 'https://github.com/W2XiaoYu'}

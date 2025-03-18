@@ -14,6 +14,8 @@
 - [SQL执行过程](/front/database/MySQL/mysql-execution-process)
 - [MySQL主从同步](/front/database/MySQL/master-slave-synchronization)
 - [MySQL主从配置](/front/database/MySQL/master-slave-config)
+- [MySQL和Redis一致性](/front/database/MySQL/mysql-consistency)
+- [MySQL查询缓存](/front/database/MySQL/mysql-query-cache)
 
 ---
 
