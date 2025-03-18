@@ -32,7 +32,7 @@ Redis（Remote Dictionary Server）是一个开源的、基于内存的键值存
 
 本文档将深入探讨 Redis 的各个方面，帮助您全面掌握 Redis 的使用和优化技巧。以下是文档的主要内容：
 
-
+- [Redis安装](/front/database/redis/redis-install)
 
 ## 为什么选择 Redis？
 
