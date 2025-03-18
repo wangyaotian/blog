@@ -112,6 +112,7 @@ export default defineConfig({
                           collapsed: false,   // 默认展开
                           items: [
                               {text: 'Redis安装', link: '/front/database/redis/redis-install'},
+                              {text: 'Redis基础', link: '/front/database/redis/redis-basics'},
                           ]
                       }
                   ]
