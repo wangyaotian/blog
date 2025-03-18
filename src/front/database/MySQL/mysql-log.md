@@ -153,7 +153,7 @@
 
 2、开启一个事务 A
 
-```mysql
+``` mysql
 update user_info set name ="李四" where id=1
 ```
 

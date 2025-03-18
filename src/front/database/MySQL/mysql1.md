@@ -15,19 +15,19 @@
 
 1. **拉取MySQL镜像**：
 
-   ```dockerfile
+   ``` dockerfile
    docker pull mysql:latest
    ```
 
 2. **运行MySQL容器**：
 
-   ```dockerfile
+   ``` dockerfile
    docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
    ```
 
 3. **连接到MySQL容器**：
 
-   ```dockerfile
+   ``` dockerfile
    docker exec -it mysql-container mysql -u root -p
    ```
 
@@ -39,25 +39,25 @@
 
 1. **更新包列表**：
 
-   ```shell
+   ``` shell
    sudo apt update
    ```
 
 2. **安装MySQL服务器**：
 
-   ```shell
+   ``` shell
    sudo apt install mysql-server
    ```
 
 3. **启动MySQL服务**：
 
-   ```shell
+   ``` shell
    sudo systemctl start mysql
    ```
 
 4. **运行安全性脚本**：
 
-   ```sh
+   ``` sh
    sudo mysql_secure_installation
    ```
 
@@ -65,7 +65,7 @@
 
 5. **登录MySQL**：
 
-   ```sh
+   ``` sh
    sudo mysql -u root -p
    ```
 
@@ -75,31 +75,31 @@
 
 1. **安装Homebrew（如果尚未安装）**：
 
-   ```sh
+   ``` sh
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 2. **安装MySQL**：
 
-   ```sh
+   ``` sh
    brew install mysql
    ```
 
 3. **启动MySQL服务**：
 
-   ```shell
+   ``` shell
    brew services start mysql
    ```
 
 4. **运行安全性脚本**：
 
-   ```shell
+   ``` shell
    mysql_secure_installation
    ```
 
 5. **登录MySQL**：
 
-   ```shell
+   ``` shell
    mysql -u root -p
    ```
 

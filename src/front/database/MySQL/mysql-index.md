@@ -80,7 +80,7 @@
 
 ##### 2、最左前缀原理
 
-```mysql
+``` mysql
 '''最左前缀原理'''
 
 -- 1、以下的查询方式都可以用到索引
@@ -104,7 +104,7 @@ select * from table where b=2 and c=3；
 
 - like以%开头，索引无效；当like前缀没有%，后缀有%时，索引有效
 
-```mysql
+``` mysql
 -- 不能命中索引
 select * from table where name like "%Snial%"
 select * from table where name like "%Snail"
@@ -117,7 +117,7 @@ select * from table where name like "Snail%"
 
 - 当or左右查询字段只有一个 是索引，该索引无效，只有当or左右查询字段均为索引时，才会生效
 
-```mysql
+``` mysql
 -- 命中索引
 select * from table where uid=24 or uid=18;
 -- 无法命中索引
@@ -128,7 +128,7 @@ select * from table where uid=24 or name=Snail;
 
 - 组合索引，不是使用第一列索引，索引失效
 
-```mysql
+``` mysql
 -- 只会用到索引a
 select * from table wher a=1 and c=3;
 --因为没有用到最左前缀a，所以无法使用索引
