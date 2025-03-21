@@ -42,6 +42,7 @@ Redis（Remote Dictionary Server）是一个开源的、基于内存的键值存
 - [Redis集群](/front/database/redis/cluster)
 - [雪崩穿透击穿](/front/database/redis/redis-avalanche-guard)
 - [Redis锁](/front/database/redis/redis-lock)
+- [Redis缓存](/front/database/redis/redis-cache)
 
 ## 为什么选择 Redis？
 

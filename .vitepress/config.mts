@@ -128,6 +128,7 @@ export default defineConfig({
                                 {text: 'Redis集群', link: '/front/database/redis/cluster'},
                                 {text: '雪崩穿透击穿', link: '/front/database/redis/redis-avalanche-guard'},
                                 {text: 'Redis锁', link: '/front/database/redis/redis-lock'},
+                                {text: 'Redis缓存', link: '/front/database/redis/redis-cache'},
                             ]
                         }
                     ]
