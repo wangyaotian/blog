@@ -123,6 +123,11 @@ export default defineConfig({
                                 {text: 'Redis底层存储', link: '/front/database/redis/underlying-storage'},
                                 {text: 'Redis数据类型操作', link: '/front/database/redis/data-type-operation'},
                                 {text: 'Redis连接和基本操作', link: '/front/database/redis/basic-operation'},
+                                {text: 'Redis线程模型', link: '/front/database/redis/thread-model'},
+                                {text: 'Redis持久化', link: '/front/database/redis/persistence'},
+                                {text: 'Redis集群', link: '/front/database/redis/cluster'},
+                                {text: '雪崩穿透击穿', link: '/front/database/redis/redis-avalanche-guard'},
+                                {text: 'Redis锁', link: '/front/database/redis/redis-lock'},
                             ]
                         }
                     ]
