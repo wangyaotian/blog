@@ -41,7 +41,7 @@
     - 而是会将事件放入事件队列，然后继续处理其他的事件
 - 注2：下图“写发送队列”指额是返回数据给客户端，这个过程需要写入到socket
 
-![image-20240924113244072](C:\Users\yuluo\AppData\Roaming\Typora\typora-user-images\image-20240924113244072.png)
+![image](http://v5blog.cn/assets/img/image-20241012145603012.648f388f.png)
 
 #### 三、6.0之前为什么引入IO多线程
 

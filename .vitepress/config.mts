@@ -129,6 +129,9 @@ export default defineConfig({
                                 {text: '雪崩穿透击穿', link: '/front/database/redis/redis-avalanche-guard'},
                                 {text: 'Redis锁', link: '/front/database/redis/redis-lock'},
                                 {text: 'Redis缓存', link: '/front/database/redis/redis-cache'},
+                                {text: '部署Redis主从', link: '/front/database/redis/master-salve-replication'},
+                                {text: 'Redis的cluster配置', link: '/front/database/redis/cluster-config'},
+                                {text: 'Redis哨兵模式', link: '/front/database/redis/redis-sentry'},
                             ]
                         }
                     ]

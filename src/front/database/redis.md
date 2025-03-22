@@ -33,7 +33,7 @@ Redis（Remote Dictionary Server）是一个开源的、基于内存的键值存
 本文档将深入探讨 Redis 的各个方面，帮助您全面掌握 Redis 的使用和优化技巧。以下是文档的主要内容：
 
 - [Redis安装](/front/database/redis/redis-install)
-- [Redis基础](/front/database/redis/redis-basic)
+- [Redis基础](/front/database/redis/redis-basics)
 - [Redis底层存储](/front/database/redis/underlying-storage)
 - [Redis数据类型操作](/front/database/redis/data-type-operation)
 - [Redis连接和基本操作](/front/database/redis/basic-operation)
@@ -43,6 +43,9 @@ Redis（Remote Dictionary Server）是一个开源的、基于内存的键值存
 - [雪崩穿透击穿](/front/database/redis/redis-avalanche-guard)
 - [Redis锁](/front/database/redis/redis-lock)
 - [Redis缓存](/front/database/redis/redis-cache)
+- [部署Redis主从](/front/database/redis/master-salve-replication)
+- [Redis的cluster配置](/front/database/redis/cluster-config)
+- [Redis哨兵模式](/front/database/redis/redis-sentry)
 
 ## 为什么选择 Redis？
 
