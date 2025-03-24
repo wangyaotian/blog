@@ -132,6 +132,8 @@ export default defineConfig({
                                 {text: '部署Redis主从', link: '/front/database/redis/master-salve-replication'},
                                 {text: 'Redis的cluster配置', link: '/front/database/redis/cluster-config'},
                                 {text: 'Redis哨兵模式', link: '/front/database/redis/redis-sentry'},
+                                {text: 'Redis淘汰策略', link: '/front/database/redis/elimination-strategy'},
+                                {text: 'RedisCAP', link: '/front/database/redis/redis-cap.md'},
                             ]
                         }
                     ]
