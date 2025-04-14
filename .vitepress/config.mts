@@ -97,7 +97,7 @@ export default defineConfig({
                     items: [
                         {
                             text: 'MySQL',
-                            collapsed: false,   // 默认展开
+                            collapsed: true,   // 默认展开
                             items: [
                                 {text: '安装MySQL', link: '/front/database/MySQL/mysql1'},
                                 {text: 'MySQL事务', link: '/front/database/MySQL/mysql-transaction'},
@@ -116,7 +116,7 @@ export default defineConfig({
                         },
                         {
                             text: 'Redis',
-                            collapsed: false,   // 默认展开
+                            collapsed: true,   // 默认展开
                             items: [
                                 {text: 'Redis安装', link: '/front/database/redis/redis-install'},
                                 {text: 'Redis基础', link: '/front/database/redis/redis-basics'},
@@ -135,7 +135,18 @@ export default defineConfig({
                                 {text: 'Redis淘汰策略', link: '/front/database/redis/elimination-strategy'},
                                 {text: 'RedisCAP', link: '/front/database/redis/redis-cap.md'},
                             ]
-                        }
+                        },
+                        {
+                            text: 'Elasticsearch',
+                            collapsed: true,   // 默认展开
+                            items: [
+                                {text: 'ES安装', link: '/front/database/es/elasticsearch-install'},
+                                {text: 'ES介绍', link: '/front/database/es/introduce'},
+                                {text: '倒排索引', link: '/front/database/es/Inverted-index'},
+                                {text: 'ES原理', link: '/front/database/es/principle'},
+                                {text: 'ES集群原理', link: '/front/database/es/Cluster-principle'},
+                            ]
+                        },
                     ]
                 },
             ],
