@@ -39,6 +39,8 @@ Elasticsearch 是一个开源的分布式搜索和分析引擎，基于 Apache L
 -  [倒排索引](/front/database/es/Inverted-index)
 -  [ES原理](/front/database/es/principle)
 -  [ES集群原理](/front/database/es/Cluster-principle)
+-  [ES集群部署](/front/database/es/Cluster-deployment)
+-  [ES优化](/front/database/es/optimize)
 - **Elasticsearch 基础**
 - **Elasticsearch 索引与文档**
 - **Elasticsearch 查询与搜索**

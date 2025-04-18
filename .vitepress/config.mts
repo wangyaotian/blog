@@ -145,6 +145,8 @@ export default defineConfig({
                                 {text: '倒排索引', link: '/front/database/es/Inverted-index'},
                                 {text: 'ES原理', link: '/front/database/es/principle'},
                                 {text: 'ES集群原理', link: '/front/database/es/Cluster-principle'},
+                                {text: 'ES集群部署', link: '/front/database/es/Cluster-deployment'},
+                                {text: 'ES优化', link: '/front/database/es/optimize'},
                             ]
                         },
                     ]
